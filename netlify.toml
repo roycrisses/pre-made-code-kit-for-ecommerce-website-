@@ -1,12 +1,7 @@
 [build]
-  # The directory to change to before starting a build
-  base = "."
-  
-  # The build command for your client (runs in the client directory)
-  command = "cd client && npm install && npm run build"
-  
-  # The directory to deploy (relative to the root of your repo)
-  publish = "client/build"
+  # Build command and directory
+  command = "npm install && npm run build"
+  publish = "build"
 
 [build.environment]
   # Set the Node.js version
@@ -27,21 +22,14 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "same-origin"
-    
-# Environment variables that should be available in the build
+
+# Environment variables
 [context.production.environment]
   NODE_ENV = "production"
   
-# Build plugins (optional but recommended)
-[[plugins]]
-  package = "@netlify/plugin-sitemap"
-
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-  
-# Ignore files from the build
+# Development settings
 [dev]
-  command = "cd client && npm start"
+  command = "npm start"
   port = 3000
-  publish = "client/build"
+  publish = "build"
   targetPort = 3000
