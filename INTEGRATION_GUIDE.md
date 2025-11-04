@@ -5,7 +5,7 @@
 ### Setup
 1. Sign up for a SendGrid account at [https://sendgrid.com](https://sendgrid.com)
 2. Create an API key with "Full Access"
-3. Add the API key to your `.env` file:
+3. Add the API key to your `.env` file: then do the following 
    ```
    SENDGRID_API_KEY=your_sendgrid_api_key
    EMAIL_FROM=noreply@yourstore.com
