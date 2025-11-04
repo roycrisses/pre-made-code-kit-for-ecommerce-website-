@@ -1,7 +1,7 @@
 [build]
   # Build command and directory
-  command = "npm install && npm run build"
-  publish = "build"
+  command = "cd client && npm install && npm run build"
+  publish = "client/build"
 
 [build.environment]
   # Set the Node.js version
