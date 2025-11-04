@@ -1,0 +1,47 @@
+[build]
+  # The directory to change to before starting a build
+  base = "."
+  
+  # The build command for your client (runs in the client directory)
+  command = "cd client && npm install && npm run build"
+  
+  # The directory to deploy (relative to the root of your repo)
+  publish = "client/build"
+
+[build.environment]
+  # Set the Node.js version
+  NODE_VERSION = "16.20.0"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Required for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
+    
+# Environment variables that should be available in the build
+[context.production.environment]
+  NODE_ENV = "production"
+  
+# Build plugins (optional but recommended)
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+# Ignore files from the build
+[dev]
+  command = "cd client && npm start"
+  port = 3000
+  publish = "client/build"
+  targetPort = 3000
